@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook JSON Cookies Commenter</title>
+    <script>
+        function generateCookieInputs() {
+            const number_of_cookies = document.getElementById('number_of_cookies').value;
+            const cookieInputsDiv = document.getElementById('cookie_inputs');
+            cookieInputsDiv.innerHTML = '';
+            for (let i = 0; i < number_of_cookies; i++) {
+                cookieInputsDiv.innerHTML += `
+                    <label for="json_cookie_${i+1}">JSON Cookie ${i+1}:</label><br>
+                    <textarea id="json_cookie_${i+1}" name="json_cookie_${i+1}" rows="5" cols="50" required></textarea><br><br>
+                `;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Facebook JSON Cookies Commenter</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="post_link">Enter Facebook Post Link:</label><br>
+        <input type="text" id="post_link" name="post_link" required><br><br>
+
+        <label for="number_of_cookies">Enter Number of JSON Cookies:</label><br>
+        <input type="number" id="number_of_cookies" name="number_of_cookies" required onchange="generateCookieInputs()"><br><br>
+
+        <div id="cookie_inputs"></div>
+
+        <label for="comment_file">Upload Comment File (.txt):</label><br>
+        <input type="file" id="comment_file" name="comment_file" accept=".txt" required><br><br>
+
+        <label for="delay_time">Enter Delay Time (in seconds):</label><br>
+        <input type="number" id="delay_time" name="delay_time" required><br><br>
+
+        <button type="submit">Start Posting Comments</button>
+    </form>
+</body>
+</html>
